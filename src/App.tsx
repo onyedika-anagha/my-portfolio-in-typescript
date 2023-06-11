@@ -1,25 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Preloader from "./components/preloader/preloader.component";
 
+const Navigation = lazy(
+  () => import("./routes/navigation/navigation.component")
+);
+const Home = lazy(() => import("./routes/home/home.component"));
+const About = lazy(() => import("./routes/about/about.component"));
+const Contact = lazy(() => import("./routes/contact/contact.component"));
+const Projects = lazy(() => import("./routes/projects/projects.component")),
+  Certifications = lazy(
+    () => import("./routes/certs/certifications.component")
+  );
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<Preloader />}>
+      {/* <GlobalStyle /> */}
+      <Routes>
+        <Route
+          path="/"
+          element={<Navigation />}>
+          <Route
+            index
+            element={<Home />}
+          />
+          <Route
+            path="/about"
+            element={<About />}
+          />
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+          <Route
+            path="/projects"
+            element={<Projects />}
+          />
+          <Route
+            path="/certificates&education"
+            element={<Certifications />}
+          />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
