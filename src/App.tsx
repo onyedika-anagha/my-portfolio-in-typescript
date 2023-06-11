@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Preloader from "./components/preloader/preloader.component";
+import InitialState from "./utils/initial-state/initial-state";
 
 const Navigation = lazy(
   () => import("./routes/navigation/navigation.component")
@@ -17,6 +18,7 @@ function App() {
   return (
     <Suspense fallback={<Preloader />}>
       {/* <GlobalStyle /> */}
+      <InitialState />
       <Routes>
         <Route
           path="/"

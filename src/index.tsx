@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { PersistGate } from "redux-persist/integration/react";
 import "./index.css";
 import "./global/index.scss";
+// import "animate.css/animate.min.css";
+import "animate.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";

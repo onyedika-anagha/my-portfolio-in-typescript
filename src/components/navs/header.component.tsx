@@ -1,34 +1,49 @@
+import { useDispatch, useSelector } from "react-redux";
+import { selectTheme } from "../../store/theme/theme.selector";
+import { setTheme } from "../../store/theme/theme.action";
+import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import Sidebar from "./sidebar.component";
+
 const Header = () => {
+  const theme = useSelector(selectTheme),
+    dispatch = useDispatch(),
+    // setIsOpen = () => dispatch(sidebarActions.setIsOpen(true)),
+    switchTheme = (mode: string) => dispatch(setTheme(mode));
+
   return (
-    <header
-      id="header"
-      className="header">
-      <div className="container-fluid">
-        <div className="brand">
-          <a
-            href="#About"
-            className="brand-name">
-            <b>it's</b> Me
-          </a>
-        </div>
-        <div className="lets-chat">
-          <span>Let's Chat</span>
-          <button>
-            <i
-              className="fab fa-rocketchat"
-              style={{ color: "#1D2043" }}
-            />
-          </button>
-        </div>
-        <button className="nav-toggle-btn a-nav-toggle">
-          <span className="hamburger">
-            <span className="top-bun" />
-            <span className="meat" />
-            <span className="bottom-bun" />
-          </span>
-        </button>
-        <div className="hide-menu a-nav-toggle" />
-        <div className="menu">
+    <Disclosure>
+      <header
+        className="header bg-gray-800 dark:bg-slate-900"
+        id="header">
+        <div className="container-fluid">
+          <div className="brand">
+            <a
+              href="#About"
+              className="brand-name">
+              <b>it's</b> Me
+            </a>
+          </div>
+          <div className="lets-chat">
+            <span className="text-slate-700 dark:text-slate-300">
+              Let's Chat
+            </span>
+            <button>
+              <i
+                className="fab fa-rocketchat"
+                style={{ color: "#1D2043" }}
+              />
+            </button>
+          </div>
+          <Disclosure.Button className="nav-toggle-btn a-nav-toggle">
+            <span className="hamburger">
+              <span className="top-bun" />
+              <span className="meat" />
+              <span className="bottom-bun" />
+            </span>
+          </Disclosure.Button>
+          <div className="hide-menu a-nav-toggle" />
+
+          {/* <div className="menu">
           <div className="menu-lang">
             <a
               href="#"
@@ -79,9 +94,11 @@ const Header = () => {
             </ul>
           </div>
           <div className="menu-ornament" />
+        </div> */}
         </div>
-      </div>
-    </header>
+      </header>
+      <Sidebar />
+    </Disclosure>
   );
 };
 

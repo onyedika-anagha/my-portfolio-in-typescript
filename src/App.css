@@ -186,3 +186,10 @@
     height: 300px;
   }
 }
+.z-100 {
+  z-index: 100;
+}
+.sidebar {
+  animation: slideInLeft; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s;
+}

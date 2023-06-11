@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import PagePiling from "../../components/components/PagePiling";
 import { getInitialView } from "../../utils/helper/helper";
+import TopBanner from "../../components/top-banner/top-banner.component";
 
 export type FooProps = {
   variant: number;
@@ -23,13 +24,7 @@ const Home = () => {
       initialView={initialView}
       onViewChange={onViewChange}>
       <PageSection variant={1}>
-        <h1>Home Page</h1>
-        <p>On a real personal website, you'd put an intro here!</p>
-        <p>
-          <a href="https://weimingwu.medium.com/23fcde868ed9">
-            If you're lost, maybe check out the companion article here?
-          </a>
-        </p>
+        <TopBanner />
       </PageSection>
       <PageSection variant={2}>
         <h1>About</h1>
