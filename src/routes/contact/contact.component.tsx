@@ -23,7 +23,7 @@ const Contact = () => {
                       contact me
                     </span>
                     <h2 className="slide-title animate__animated delay6 animate__fadeInUp">
-                      Estimate your project? Let me know here.
+                      What do you need? Let me know here.
                     </h2>
                   </div>
                   {/* <form
@@ -106,18 +106,8 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="footer-bottom-girl animate__animated delay12 zoomIn">
-          <img
-            src="assets/images/contact/footer-bottom-girl.html"
-            alt="footer girl"
-          />
-        </div>
-        <div className="footer-bottom-shape">
-          <img
-            src="assets/images/contact/footer-bottom-shape.png"
-            alt="Shape"
-          />
-        </div>
+        <div className="footer-bottom-girl animate__animated delay12 zoomIn"></div>
+        <div className="footer-bottom-shape"></div>
       </div>
     </div>
   );

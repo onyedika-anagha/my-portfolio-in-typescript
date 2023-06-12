@@ -3,6 +3,7 @@ import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { hostURL } from "../../utils/initial-state/states";
 import { Spinner, Button } from "flowbite-react";
+import { alertMessage } from "../../utils/initial-state/initial-state";
 
 const defaultValues = {
   name: "",
@@ -28,13 +29,19 @@ const ContactForm = () => {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
+          body: JSON.stringify(formData),
         }),
         res = await result.json();
       if (res.type === "success") {
         resetForm();
+        alertMessage(res.type, res.message);
+      } else {
+        alertMessage(res.type, res.message);
       }
     } catch (error) {
+      const err = error as Error;
       console.log(error as Error);
+      alertMessage("error", err.message);
     } finally {
       setLoading(false);
     }
@@ -157,11 +164,10 @@ const ContactForm = () => {
       <div className="relative mt-10">
         <textarea
           name="message"
-          defaultValue={message}
           onChange={handleChangeText}
+          value={message}
           required
-          className="w-full rounded-2xl border-1 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
-        />
+          className="w-full rounded-2xl border-1 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"></textarea>
         <label
           htmlFor=""
           className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
