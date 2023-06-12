@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { selectTheme } from "../../store/theme/theme.selector";
 import { setTheme } from "../../store/theme/theme.action";
+import { fetchData } from "../../store/data/data.actions";
 
 // export const alertMessage = (type, msg) => {
 //     const theme =
@@ -59,7 +60,7 @@ const InitialState = () => {
         }
     }, [theme, dispatch]);
     useEffect(() => {
-        // dispatch(fetchSiteInfo());
+        dispatch(fetchData());
         if (
             localStorage.theme === "dark" ||
             (!("theme" in localStorage) &&

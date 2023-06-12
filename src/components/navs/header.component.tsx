@@ -3,6 +3,7 @@ import { selectTheme } from "../../store/theme/theme.selector";
 import { setTheme } from "../../store/theme/theme.action";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import Sidebar from "./sidebar.component";
+import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
   const theme = useSelector(selectTheme),
@@ -13,23 +14,23 @@ const Header = () => {
   return (
     <Disclosure>
       <header
-        className="header bg-gray-800 dark:bg-slate-900"
+        className="header bg-gray-800 dark:bg-neutral-900"
         id="header">
         <div className="container-fluid">
           <div className="brand">
             <a
               href="#About"
               className="brand-name">
-              <b>it's</b> Me
+              <b>Onyedika Anagha</b>
             </a>
           </div>
           <div className="lets-chat">
             <span className="text-slate-700 dark:text-slate-300">
               Let's Chat
             </span>
-            <button>
-              <i
-                className="fab fa-rocketchat"
+            <button className="flex justify-center items-center">
+              <ChatBubbleBottomCenterIcon
+                className="w-5 h-5"
                 style={{ color: "#1D2043" }}
               />
             </button>

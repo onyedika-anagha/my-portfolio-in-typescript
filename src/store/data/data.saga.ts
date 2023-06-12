@@ -6,9 +6,16 @@ import { DATA_ACTION_TYPES, DataTypes } from "./data.types";
 import { hostURL } from "../../utils/initial-state/states";
 
 const getData = async () => {
-  const res = await fetch(`${hostURL}/api/get/all`);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`${hostURL}/api/get/all`);
+    const data = await res.json();
+    if(data.success != null){
+      if(data.success) return await data.data;
+    }
+    
+  } catch (error) {
+    console.error(error as Error);
+  }
 };
 
 export function* fetchData() {

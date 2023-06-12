@@ -8,12 +8,14 @@ export type DataTypes = {
   user: User;
   socials: SocialMedia[];
   services: ServiceType[];
+  stack: Stack[];
 };
 
 export type User = {
   name: string;
   email: string;
   tel: string;
+  profile_image: string;
 };
 export type SocialMedia = {
   name: string;
@@ -25,4 +27,9 @@ export type ServiceType = {
   image: string | null;
   slug: string;
   desc: string | null;
+};
+export type Stack = {
+  name: string;
+  image: string | null;
+  percentage: string | number;
 };

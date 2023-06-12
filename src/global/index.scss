@@ -1,0 +1,17 @@
+.dark {
+  #preloader {
+    background: rgba(64, 64, 64, 1) !important;
+  }
+
+  #preloader div {
+    border-right: 4px solid #fff !important;
+  }
+  #preloader div:before,
+  #preloader div:after {
+    content: "";
+    border-left: 3px solid #fff !important;
+  }
+  #preloader div:after {
+    border-right: 2px solid #fff !important;
+  }
+}

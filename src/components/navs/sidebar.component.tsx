@@ -92,31 +92,14 @@ const Sidebar = () => {
           <div className="w-full max-w-sm overflow-hidden transition-all">
             <div className="overflow-y-auto w-full h-screen py-2 transition transform shadow-lg ring-1 dark:ring-neutral-700 bg-white dark:bg-neutral-900 divide-y-2 divide-neutral-100 dark:divide-neutral-800">
               <div className="py-6 px-5">
-                <Link
-                  className="ttnc-logo inline-block text-primary-6000 flex-shrink-0"
-                  to="/">
-                  {theme === "dark" ? (
-                    <img
-                      src={logoWhite}
-                      alt="logo"
-                      srcSet={logoWhite}
-                      style={{
-                        width: "auto",
-                        height: 40,
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src={logo}
-                      alt="logo"
-                      srcSet={logo}
-                      style={{
-                        width: "auto",
-                        height: 40,
-                      }}
-                    />
-                  )}
-                </Link>
+                <div className="ttnc-logo inline-block text-primary-6000 flex-shrink-0">
+                  <span
+                    style={{
+                      width: "auto",
+                      height: 40,
+                    }}
+                  />
+                </div>
                 <div className="flex flex-col mt-5 text-slate-600 dark:text-slate-300 text-sm">
                   <span>
                     Discover the most outstanding articles on all topics of

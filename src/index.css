@@ -79,6 +79,7 @@ code {
     transform: rotate(0deg);
   }
 }
+
 /*-----------------------------------------------------------------------------------
     Note: This is Main Style CSS File.
 -----------------------------------------------------------------------------------
@@ -109,7 +110,7 @@ code {
 * {
   margin: 0;
   padding: 0;
-  border: none;
+  /* border: none; */
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -508,6 +509,7 @@ a.theme-btn:hover i {
 }
 
 .section {
+  /* height: 100vh; */
   min-height: 100%;
 }
 
@@ -2004,11 +2006,14 @@ blockquote .designation {
 /****************** 16. Dark Version ****************** */
 /****************************************************** */
 .dark {
-  --light-color: #32324c;
+  --light-color: #27272e;
 }
 
 .dark .pp-scrollable:not(.slide-light) {
-  background: #3c3b5a;
+  background: #212121;
+}
+.dark body {
+  background: #212121;
 }
 
 .dark h1,
