@@ -106,10 +106,6 @@ const Home = () => {
       <PageSection variant={3}>
         <HomeSkills />
       </PageSection>
-      <PageSection variant={4}>
-        <h1>Portfolio</h1>
-        <p>A portfolio of previous work is always nice.</p>
-      </PageSection>
     </PagePiling>
   );
 };

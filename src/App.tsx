@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Preloader from "./components/preloader/preloader.component";
 import InitialState from "./utils/initial-state/initial-state";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const Navigation = lazy(
   () => import("./routes/navigation/navigation.component")
@@ -45,6 +47,7 @@ function App() {
           />
         </Route>
       </Routes>
+      <ToastContainer />
     </Suspense>
   );
 }

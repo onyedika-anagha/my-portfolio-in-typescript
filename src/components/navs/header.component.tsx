@@ -4,18 +4,44 @@ import { setTheme } from "../../store/theme/theme.action";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import Sidebar from "./sidebar.component";
 import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
+import { screenSize } from "../../utils/helper/helper";
+import { _sizes } from "../../utils/helper/states";
 
 const Header = () => {
+  const [isSticky, setIsSticky] = useState("");
   const theme = useSelector(selectTheme),
     dispatch = useDispatch(),
     // setIsOpen = () => dispatch(sidebarActions.setIsOpen(true)),
     switchTheme = (mode: string) => dispatch(setTheme(mode));
 
+  useEffect(() => {
+    const handleScroll = (event: Event) => {
+      var scroll = window.scrollY,
+        screenWidth = window.innerWidth;
+      if (screenWidth > _sizes.laptop) {
+        if (scroll < 150) {
+          setIsSticky("");
+        } else {
+          setIsSticky("header-sticky");
+        }
+      } else {
+        setIsSticky("");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("touchmove", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchmove", handleScroll);
+    };
+  }, []);
   return (
     <Disclosure>
       <header
-        className="header bg-gray-800 dark:bg-neutral-900"
+        className={`header bg-gray-800 dark:bg-neutral-900 ${isSticky}`}
         id="header">
+        <div className="backdrop" />
         <div className="container-fluid">
           <div className="brand">
             <a

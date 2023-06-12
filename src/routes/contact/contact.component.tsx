@@ -1,12 +1,21 @@
 import ContactForm from "../../components/contact/contact.component";
+import contactImg from "../../assets/img/contact.svg";
+import { useSelector } from "react-redux";
+import { selectInfo } from "../../store/data/data.selector";
+import Preloader from "../../components/preloader/preloader.component";
+import SocialSvg from "../../utils/helper/socials";
 
 const Contact = () => {
+  const siteData = useSelector(selectInfo);
+  if (siteData.user == null) return <Preloader />;
+  const { user, socials } = siteData;
+
   return (
-    <div className="section pp-scrollable slide slide-contact slide-light dark:bg-neutral-800">
+    <div className="section pp-scrollable slide slide-contact slide-light bg-slate-50 dark:bg-neutral-800">
       <div className="slide-container">
         <div className="container">
           <div className="contact-wrap mb-185 rmb-95">
-            <div className="flex flex-wrap items-end -mxa-15">
+            <div className="flex flex-wrap items-center -mxa-15">
               <div className="lg:grow-0 lg:shrink-0 basisa-58 pxa-15">
                 <div className="contact-content">
                   <div className="section-title mb-55">
@@ -17,7 +26,7 @@ const Contact = () => {
                       Estimate your project? Let me know here.
                     </h2>
                   </div>
-                  <form
+                  {/* <form
                     action="#"
                     className="contact-form animate__animated delay8 animate__fadeInUp">
                     <div className="form-group">
@@ -54,14 +63,14 @@ const Contact = () => {
                     <button type="submit">
                       <i className="fas fa-paper-plane" />
                     </button>
-                  </form>
+                  </form> */}
                   <ContactForm />
                 </div>
               </div>
               <div className="lg:grow-0 lg:shrink-0 basisa-41 pxa-15">
-                <div className="contact-image animate__animated text-center delay7 fadeInLeft">
+                <div className="contact-image animate__animated text-center delay7 animate__fadeInLeft p-5">
                   <img
-                    src="assets/images/contact/contact.html"
+                    src={contactImg}
                     alt="Contact"
                   />
                 </div>
@@ -70,40 +79,30 @@ const Contact = () => {
           </div>
           <div className="footer-contact text-center mb-35">
             <div className="section-title mb-30 animate__animated delay8 animate__fadeInUp">
-              <h2>Stay Connected</h2>
+              <h2>Contact Info.</h2>
             </div>
-            <span className="country list-inline-item animate__animated delay9 animate__fadeInUp">
-              Bangladesh
-            </span>
             <h3 className="animate__animated delay6 animate__fadeInUp">
-              <a href="mailto:hello_niharik@gmail.com">
-                hello_niharik@gmail.com
-              </a>
+              <a href={`mailto:${user.email}`}>{user.email}</a>
             </h3>
             <a
-              href="callto:(+778)675-0765"
+              href={`tel:${user.tel}`}
               className="number list-inline-item animate__animated delay10 animate__fadeInUp">
-              (+778) 675-0765
+              {user.tel}
             </a>
-            <div className="social-style-two mt-25 animate__animated delay11 animate__fadeInUp">
-              <a href="#">
-                <img
-                  src="assets/images/contact/social-dribbble.png"
-                  alt="Social"
-                />
-              </a>
-              <a href="#">
-                <img
-                  src="assets/images/contact/social-behance.html"
-                  alt="Social"
-                />
-              </a>
-              <a href="#">
-                <img
-                  src="assets/images/contact/social-instagram.png"
-                  alt="Social"
-                />
-              </a>
+            <div className="social-style-two flex flex-wrap mt-25 animate__animated delay11 animate__fadeInUp">
+              {socials.map((item, i) => (
+                <a
+                  href={item.link}
+                  key={i}
+                  className="flex justify-center items-center"
+                  style={{
+                    display: "flex",
+                  }}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  <SocialSvg name={item.name} />
+                </a>
+              ))}
             </div>
           </div>
         </div>

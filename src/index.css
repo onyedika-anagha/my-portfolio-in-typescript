@@ -117,10 +117,11 @@ code {
 }
 
 :root {
+  --tw-bg-opacity: 1;
   scroll-behavior: auto;
   --base-color: #a3a5a7;
   --heading-color: #1d2043;
-  --primary-color: #df5646;
+  --primary-color: rgb(28 100 242 / var(--tw-bg-opacity));
   --light-color: #fafafa;
   --base-font: "Poppins", sans-serif;
   --heading-font: "Playfair Display", serif;
@@ -280,7 +281,7 @@ footer:after {
   padding: 6px 16px;
   margin-left: 50px;
   position: relative;
-  background: #fbf1e7;
+  background: #e7ecfb;
   display: inline-block;
   text-transform: capitalize;
   color: var(--primary-color);

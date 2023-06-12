@@ -16,6 +16,7 @@ export type User = {
   email: string;
   tel: string;
   profile_image: string;
+  bio: string | null;
 };
 export type SocialMedia = {
   name: string;

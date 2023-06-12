@@ -1,18 +1,71 @@
-function ContactForm() {
+"use client";
+import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { hostURL } from "../../utils/initial-state/states";
+import { Spinner, Button } from "flowbite-react";
+
+const defaultValues = {
+  name: "",
+  email: "",
+  tel: "",
+  message: "",
+};
+const ContactForm = () => {
+  const [formData, setFormData] = useState(defaultValues);
+  const [loading, setLoading] = useState(false);
+  const { name, email, tel, message } = formData;
+
+  const resetForm = () => {
+    setFormData(defaultValues);
+  };
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    setLoading(true);
+    try {
+      event.preventDefault();
+      const result = await fetch(`${hostURL}/api/post/message`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }),
+        res = await result.json();
+      if (res.type === "success") {
+        resetForm();
+      }
+    } catch (error) {
+      console.log(error as Error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setFormData((state) => ({ ...state, [name]: value }));
+  };
+  const handleChangeText = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+
+    setFormData((state) => ({ ...state, [name]: value }));
+  };
   return (
     <form
-      action="#"
-      className="rounded-3xl bg-white dark:bg-neutral-800 px-4 py-12  ">
+      onSubmit={handleSubmit}
+      className="rounded-3xl dark:bg-neutral-800 px-4 py-12  ">
       <div className="grid gap-10 ">
         <div className="relative">
           <input
             type="text"
             name="name"
+            value={name}
+            required
+            onChange={handleChange}
             className="w-full rounded-2xl border-1 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
           />
           <label
             htmlFor=""
-            className="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-white">
+            className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
             What's your name?
           </label>
           <svg
@@ -21,7 +74,7 @@ function ContactForm() {
             viewBox="0 0 20 22"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-white">
+            className="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-slate-50">
             <path
               d="M5.42855 5.57875C5.42855 8.10348 7.47525 10.1502 9.99998 10.1502C12.5247 10.1502 14.5714 8.10348 14.5714 5.57875C14.5714 3.05402 12.5247 1.00732 9.99998 1.00732"
               stroke="currentColor"
@@ -39,11 +92,14 @@ function ContactForm() {
           <input
             type="email"
             name="email"
+            value={email}
+            required
+            onChange={handleChange}
             className="w-full rounded-2xl border-1 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
           />
           <label
             htmlFor=""
-            className="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-white">
+            className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
             Email Address
           </label>
           <svg
@@ -52,7 +108,7 @@ function ContactForm() {
             viewBox="0 0 22 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-white">
+            className="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-slate-50">
             <path
               d="M1 8.00732V7.00732C1 4.2459 3.23858 2.00732 6 2.00732H16C18.7614 2.00732 21 4.2459 21 7.00732V13.0073C21 15.7687 18.7614 18.0073 16 18.0073H6C3.23858 18.0073 1 15.7687 1 13.0073V12.0073"
               stroke="currentColor"
@@ -71,12 +127,15 @@ function ContactForm() {
         <div className="relative">
           <input
             type="text"
-            name="mobile"
+            name="tel"
+            value={tel}
+            required
+            onChange={handleChange}
             className="w-full rounded-2xl border-1 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
           />
           <label
             htmlFor=""
-            className="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-white">
+            className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
             Mobile Number
           </label>
           <svg
@@ -85,7 +144,7 @@ function ContactForm() {
             viewBox="0 0 22 22"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-white">
+            className="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-slate-50">
             <path
               d="M6.45241 1.40806C5.45292 0.783702 4.14202 0.887138 3.2983 1.73086L1.86856 3.1606C-0.302899 5.33207 1.73747 10.8931 6.42586 15.5815C11.1142 20.2699 16.6753 22.3102 18.8467 20.1388L20.2765 18.709C21.2635 17.722 21.2374 16.0956 20.2182 15.0764L18.0036 12.8619C16.9844 11.8426 15.358 11.8165 14.371 12.8036L14.0639 13.1107C13.531 13.6436 12.6713 13.6957 12.0713 13.2005C11.4925 12.7229 10.9159 12.208 10.3576 11.6497C9.79933 11.0914 9.28441 10.5149 8.80678 9.93607C8.31161 9.33601 8.36374 8.47631 8.89666 7.9434L9.20375 7.63631C9.98187 6.85819 10.1303 5.68271 9.65898 4.72062"
               stroke="currentColor"
@@ -98,11 +157,14 @@ function ContactForm() {
       <div className="relative mt-10">
         <textarea
           name="message"
+          defaultValue={message}
+          onChange={handleChangeText}
+          required
           className="w-full rounded-2xl border-1 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
         />
         <label
           htmlFor=""
-          className="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-white">
+          className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
           Tell me about your project
         </label>
         <svg
@@ -111,7 +173,7 @@ function ContactForm() {
           viewBox="0 0 22 22"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-white">
+          className="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-slate-50">
           <path
             d="M1 11.467V18.9267C1 19.7652 1.96993 20.2314 2.6247 19.7076L5.45217 17.4456C5.8068 17.1619 6.24742 17.0073 6.70156 17.0073H16C18.7614 17.0073 21 14.7687 21 12.0073V6.00732C21 3.2459 18.7614 1.00732 16 1.00732H6C3.23858 1.00732 1 3.2459 1 6.00732V7.62225"
             stroke="currentColor"
@@ -138,15 +200,33 @@ function ContactForm() {
           />
         </svg>
       </div>
-      <div className="mt-10 text-center ltr:lg:text-right rtl:lg:text-left">
-        <button
-          type="button"
-          className="btn bg-gray px-12 capitalize text-white dark:bg-white dark:text-black dark:hover:bg-secondary">
-          Submit
-        </button>
-      </div>
+
+      {loading ? (
+        <div className="mt-10 flex justify-center ltr:lg:text-right rtl:lg:text-left">
+          <Button
+            gradientDuoTone="purpleToBlue"
+            className="flex"
+            outline>
+            <Spinner
+              aria-label="Loading..."
+              color="info"
+            />
+          </Button>
+        </div>
+      ) : (
+        <div className="mt-10 flex justify-center ltr:lg:text-right rtl:lg:text-left">
+          <button
+            type="submit"
+            className="theme-btn mt-45 rmt-25 animate__animated delay9 animate__fadeInUp">
+            Submit
+            <i className="flex items-center">
+              <ArrowLongRightIcon className="w-6 h-6" />
+            </i>
+          </button>
+        </div>
+      )}
     </form>
   );
-}
+};
 
 export default ContactForm;

@@ -218,6 +218,25 @@ const TopBanner = memo(() => {
           </div>
         </div>
       </div>
+      <div className="w-full h-auto absolute inset-0 z-[-1]">
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            overflow: "hidden",
+            pointerEvents: "auto",
+          }}>
+          <div style={{ width: "100%", height: "100%" }}>
+            <canvas
+              data-engine="three.js r150"
+              width={1065}
+              height={957}
+              style={{ display: "block", width: 1065, height: 957 }}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 });
