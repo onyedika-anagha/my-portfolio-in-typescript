@@ -13,6 +13,9 @@ const Home = lazy(() => import("./routes/home/home.component"));
 const About = lazy(() => import("./routes/about/about.component"));
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const Projects = lazy(() => import("./routes/projects/projects.component")),
+  ProjectDetail = lazy(
+    () => import("./routes/projects/project-detail.component")
+  ),
   Certifications = lazy(
     () => import("./routes/certs/certifications.component")
   );
@@ -41,6 +44,11 @@ function App() {
             path="/projects"
             element={<Projects />}
           />
+          <Route
+            path="/project/:slug"
+            element={<ProjectDetail />}
+          />
+
           <Route
             path="/certificates&education"
             element={<Certifications />}

@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectTheme } from "../../store/theme/theme.selector";
-import { setTheme } from "../../store/theme/theme.action";
-import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import Sidebar from "./sidebar.component";
-import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { _sizes } from "../../utils/helper/states";
 import logoLight from "../../assets/img/logo-light.png";
@@ -22,7 +20,6 @@ const Header = () => {
     // setIsOpen = () => dispatch(sidebarActions.setIsOpen(true)),
     _logo = theme === "dark" ? logoLight : logoDark,
     logo = window.innerWidth > _sizes.laptop ? _logo : logoLight;
-  console.log(whatsapp);
   useEffect(() => {
     const handleScroll = (event: Event) => {
       var scroll = window.scrollY,
