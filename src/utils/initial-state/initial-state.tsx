@@ -7,11 +7,12 @@ import { selectTheme } from "../../store/theme/theme.selector";
 import { setTheme } from "../../store/theme/theme.action";
 import { fetchData } from "../../store/data/data.actions";
 import { toast } from "react-toastify";
+import { fetchProjectData } from "../../store/projects/project.actions";
 
 export const alertMessage = (type: string, msg: string) => {
   const theme =
-    localStorage.theme != null
-      ? localStorage.theme
+    localStorage._theme != null
+      ? localStorage._theme
       : window.matchMedia("(prefers-color-scheme: dark)")
       ? "dark"
       : "light";
@@ -57,23 +58,32 @@ const InitialState = () => {
     const html = document.querySelector("html");
     if (html != null) {
       if (theme === "dark") {
+        localStorage.setItem("_theme", "dark");
         html.classList.add("dark");
       } else {
+        localStorage.setItem("_theme", "light");
         html.classList.remove("dark");
       }
     }
   }, [theme, dispatch]);
   useEffect(() => {
     dispatch(fetchData());
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      dispatch(setTheme("dark"));
-    } else {
-      dispatch(setTheme("light"));
-    }
+    dispatch(fetchProjectData());
+    // if (
+    //   !("theme" in localStorage) &&
+    //   window.matchMedia("(prefers-color-scheme: dark)").matches
+    // ) {
+    //   const _theme = localStorage.getItem("theme"),
+    //     newTheme = _theme == null ? "dark" : _theme;
+    //   console.log("newTheme: ", newTheme);
+
+    //   dispatch(setTheme(newTheme));
+    // } else {
+    //   const _theme = localStorage.getItem("theme"),
+    //     newTheme = _theme == null ? "light" : _theme;
+    //   console.log("newTheme: ", _theme);
+    //   dispatch(setTheme(newTheme));
+    // }
   }, [dispatch]);
 
   return <></>;

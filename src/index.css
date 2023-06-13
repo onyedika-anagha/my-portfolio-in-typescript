@@ -770,6 +770,9 @@ a.theme-btn:hover i {
   background: #3e4651;
   transition: all 400ms ease-in-out;
 }
+header.mobile-view .hamburger span {
+  background: #fff;
+}
 
 .hamburger .meat {
   width: 83.33333333%;
@@ -2185,4 +2188,18 @@ h6 {
     flex-basis: 58.333333%;
     max-width: 58.333333%;
   }
+}
+
+canvas#matrix-bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: radial-gradient(
+    circle at center center,
+    #000,
+    transparent 75%
+  );
+  mask-image: radial-gradient(circle at center center, #000, transparent 75%);
 }

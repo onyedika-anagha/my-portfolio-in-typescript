@@ -1,5 +1,6 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useSelector } from "react-redux";
+
 // import "boxicons";
 
 import { selectInfo } from "../../store/data/data.selector";
@@ -13,10 +14,19 @@ import Typed from "../toolkits/typed.component";
 import { hostURL } from "../../utils/initial-state/states";
 import SocialSvg from "../../utils/helper/socials";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
+import { drawBackground } from "../../global/matrics";
+import { selectTheme } from "../../store/theme/theme.selector";
 
 const TopBanner = memo(() => {
+  const theme = useSelector(selectTheme);
   const siteInfo = useSelector(selectInfo);
   const { user, socials } = siteInfo;
+  useEffect(() => {
+    var c = document.getElementById("matrix-bg");
+    if (c != null) {
+      drawBackground("matrix-bg");
+    }
+  }, [theme]);
   return user === null ? (
     <></>
   ) : (
@@ -103,6 +113,9 @@ const TopBanner = memo(() => {
     <div
       className="section pp-scrollable slide slide-about a-slide-typed"
       data-name="about">
+      <canvas
+        id="matrix-bg"
+        className="w-full inset-0 absolute h-full mask-radial-faded opacity-75"></canvas>
       <div className="slide-container">
         <div className="container">
           <div className="number-email-cv">

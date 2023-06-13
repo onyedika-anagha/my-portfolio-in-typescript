@@ -5,15 +5,21 @@ import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import Sidebar from "./sidebar.component";
 import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
-import { screenSize } from "../../utils/helper/helper";
 import { _sizes } from "../../utils/helper/states";
-
+import logoLight from "../../assets/img/logo-light.png";
+import logoDark from "../../assets/img/logo-dark.png";
+import { Link } from "react-router-dom";
+const getClass = () => {
+  return window.innerWidth > _sizes.laptop ? "" : "mobile-view";
+};
 const Header = () => {
-  const [isSticky, setIsSticky] = useState("");
+  const [isSticky, setIsSticky] = useState(getClass());
   const theme = useSelector(selectTheme),
     dispatch = useDispatch(),
     // setIsOpen = () => dispatch(sidebarActions.setIsOpen(true)),
-    switchTheme = (mode: string) => dispatch(setTheme(mode));
+    switchTheme = (mode: string) => dispatch(setTheme(mode)),
+    _logo = theme === "dark" ? logoLight : logoDark,
+    logo = window.innerWidth > _sizes.laptop ? _logo : logoLight;
 
   useEffect(() => {
     const handleScroll = (event: Event) => {
@@ -26,7 +32,7 @@ const Header = () => {
           setIsSticky("header-sticky");
         }
       } else {
-        setIsSticky("");
+        setIsSticky("mobile-view");
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -44,11 +50,15 @@ const Header = () => {
         <div className="backdrop" />
         <div className="container-fluid">
           <div className="brand">
-            <a
-              href="#About"
+            <Link
+              to="/"
               className="brand-name">
-              <b>Onyedika Anagha</b>
-            </a>
+              <img
+                src={logo}
+                width={127}
+                alt="Onyedika Anagha"
+              />
+            </Link>
           </div>
           <div className="lets-chat">
             <span className="text-slate-700 dark:text-slate-300">

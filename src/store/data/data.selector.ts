@@ -10,6 +10,8 @@ export const selectInfo = createSelector([selectDataReducer], (data) =>
         socials: null,
         services: null,
         stack: null,
+        education: null,
+        experience: null,
       }
     : data.info
 );

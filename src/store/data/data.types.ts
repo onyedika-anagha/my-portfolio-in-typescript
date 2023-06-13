@@ -3,34 +3,55 @@ export enum DATA_ACTION_TYPES {
   SET_DATA = "data/SET_DATA",
   SET_IS_LOADING = "data/SET_IS_LOADING",
 }
-
-export type DataTypes = {
+export interface DataTypes {
   user: User;
-  socials: SocialMedia[];
-  services: ServiceType[];
+  services: Service[];
+  socials: Social[];
   stack: Stack[];
-};
+  experience: Experience[];
+  education: Education[];
+}
 
-export type User = {
+export interface Education {
+  id: number;
+  school: string;
+  program: string;
+  start_time: Date;
+  end_time: Date;
+}
+
+export interface Experience {
+  id: number;
+  company: string;
+  start_time: Date;
+  end_time: Date;
+  position: string;
+  type: string;
+  note: string | null;
+}
+
+export interface Service {
+  name: string;
+  image: string;
+  slug: string;
+  desc: string;
+}
+
+export interface Social {
+  name: string;
+  link: string;
+}
+
+export interface Stack {
+  name: string;
+  image: string;
+  percentage: number;
+}
+
+export interface User {
   name: string;
   email: string;
   tel: string;
   profile_image: string;
-  bio: string | null;
-};
-export type SocialMedia = {
-  name: string;
-  link: string;
-};
-
-export type ServiceType = {
-  name: string;
-  image: string | null;
-  slug: string;
-  desc: string | null;
-};
-export type Stack = {
-  name: string;
-  image: string | null;
-  percentage: string | number;
-};
+  bio: string;
+}
