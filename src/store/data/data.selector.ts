@@ -15,3 +15,8 @@ export const selectInfo = createSelector([selectDataReducer], (data) =>
       }
     : data.info
 );
+export const selectWhatsapp = createSelector([selectDataReducer], (data) => {
+  const socials = data.info == null ? null : data.info.socials,
+    whatsapp = socials?.find((social) => social.name === "Whatsapp");
+  return whatsapp;
+});

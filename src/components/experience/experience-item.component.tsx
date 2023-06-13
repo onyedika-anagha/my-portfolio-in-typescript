@@ -1,11 +1,11 @@
-import { Education } from "../../store/data/data.types";
+import { Experience } from "../../store/data/data.types";
 
 const getMonth = (date: Date) => {
   return date.toLocaleString("default", { month: "short" });
 };
 
-const EducationItem = ({ institution }: { institution: Education }) => {
-  const { school, start_time, end_time, program } = institution;
+const ExperienceItem = ({ item }: { item: Experience }) => {
+  const { end_time, start_time, company, position, type, note } = item;
   const startTime = new Date(start_time);
   const endTime = new Date(end_time);
 
@@ -17,21 +17,19 @@ const EducationItem = ({ institution }: { institution: Education }) => {
     startYear === endYear ? `${getMonth(endTime)} ${endYear}` : endYear;
 
   return (
-    <div className="edu-experi-item animate-element delay5 fadeInUp">
+    <div className="edu-experi-item beahance animate-element delay7 fadeInUp">
       <span className="years">
         {started}-{ended}
       </span>
       <div className="vacancy-content">
-        {/* <span className="title">BSC</span> */}
-        <h4 className="subject">{program}</h4>
-        <h6 className="institution">{school}</h6>
-        {/* <p>
-          Major in UI Design, UX Design, Interaction Design, User Empathy,
-          Branding.
-        </p> */}
+        <span className="title">{company}</span>
+        <h4 className="subject">
+          {position} .<small>{type}</small>{" "}
+        </h4>
+        <p>{note}</p>
       </div>
     </div>
   );
 };
 
-export default EducationItem;
+export default ExperienceItem;

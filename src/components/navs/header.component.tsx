@@ -9,18 +9,20 @@ import { _sizes } from "../../utils/helper/states";
 import logoLight from "../../assets/img/logo-light.png";
 import logoDark from "../../assets/img/logo-dark.png";
 import { Link } from "react-router-dom";
+import { selectWhatsapp } from "../../store/data/data.selector";
+import SocialSvg from "../../utils/helper/socials";
 const getClass = () => {
   return window.innerWidth > _sizes.laptop ? "" : "mobile-view";
 };
 const Header = () => {
   const [isSticky, setIsSticky] = useState(getClass());
   const theme = useSelector(selectTheme),
-    dispatch = useDispatch(),
+    whatsapp = useSelector(selectWhatsapp),
+    // dispatch = useDispatch(),
     // setIsOpen = () => dispatch(sidebarActions.setIsOpen(true)),
-    switchTheme = (mode: string) => dispatch(setTheme(mode)),
     _logo = theme === "dark" ? logoLight : logoDark,
     logo = window.innerWidth > _sizes.laptop ? _logo : logoLight;
-
+  console.log(whatsapp);
   useEffect(() => {
     const handleScroll = (event: Event) => {
       var scroll = window.scrollY,
@@ -61,15 +63,19 @@ const Header = () => {
             </Link>
           </div>
           <div className="lets-chat">
-            <span className="text-slate-700 dark:text-slate-300">
-              Let's Chat
-            </span>
-            <button className="flex justify-center items-center">
-              <ChatBubbleBottomCenterIcon
-                className="w-5 h-5"
-                style={{ color: "#1D2043" }}
-              />
-            </button>
+            {whatsapp != null && (
+              <a
+                href={whatsapp.link}
+                target="_blank"
+                rel="noopener noreferrer">
+                <button className="flex justify-center items-center">
+                  <SocialSvg
+                    name={whatsapp.name}
+                    className="w-5 h-5"
+                  />
+                </button>
+              </a>
+            )}
           </div>
           <Disclosure.Button className="nav-toggle-btn a-nav-toggle">
             <span className="hamburger">

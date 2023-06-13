@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectInfo } from "../../store/data/data.selector";
 import EducationItem from "../../components/education/education.component";
+import ExperienceItem from "../../components/experience/experience-item.component";
 
 const Certifications = () => {
   const siteData = useSelector(selectInfo),
@@ -37,33 +38,12 @@ const Certifications = () => {
                   </h2>
                 </div>
                 <div className="edu-experi-wrap">
-                  <div className="edu-experi-item beahance animate-element delay7 fadeInUp">
-                    <span className="years">2016-2018</span>
-                    <div className="vacancy-content">
-                      <span className="title">Beahance</span>
-                      <h4 className="subject">Uniq Web Design</h4>
-                      <p>
-                        After finishing my studies, I first concentrated on my
-                        work in <a href="https://www.behance.net/">Behance</a>,
-                        here I worked as a web designer for 2 years. It was
-                        really a big experience for me.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="edu-experi-item dribbble animate-element delay10 fadeInUp">
-                    <span className="years">2018-2020</span>
-                    <div className="vacancy-content">
-                      <span className="title">Dribbble</span>
-                      <h4 className="subject">Product Designer</h4>
-                      <p>
-                        After working well for two years at{" "}
-                        <a href="https://dribbble.com/">dribbble</a>, I got the
-                        opportunity to work in one of the best market dribbles
-                        in the world, and there I am now working as a podcast
-                        designer.
-                      </p>
-                    </div>
-                  </div>
+                  {experience?.map((item) => (
+                    <ExperienceItem
+                      item={item}
+                      key={item.id}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
