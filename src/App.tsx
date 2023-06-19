@@ -13,6 +13,7 @@ const Home = lazy(() => import("./routes/home/home.component"));
 const About = lazy(() => import("./routes/about/about.component"));
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const Projects = lazy(() => import("./routes/projects/projects.component")),
+  GithubProjects = lazy(() => import("./routes/projects/git-repo.component")),
   ProjectDetail = lazy(
     () => import("./routes/projects/project-detail.component")
   ),
@@ -42,14 +43,18 @@ function App() {
             element={<Contact />}
           />
           <Route
-            path="projects"
+            path="github-repos"
+            element={<GithubProjects />}
+          />
+
+          <Route
+            path="projects/type/:slug"
             element={<Projects />}
           />
           <Route
             path="project/:slug"
             element={<ProjectDetail />}
           />
-
           <Route
             path="certificates&education"
             element={<Certifications />}

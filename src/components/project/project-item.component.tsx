@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Project } from "../../store/projects/project.types";
 import { hostURL } from "../../utils/initial-state/states";
-const getRandomAnimate = () => {
+export const getRandomAnimate = () => {
   const animations = [
     "animate__fadeInUp",
     "animate__fadeInLeft",

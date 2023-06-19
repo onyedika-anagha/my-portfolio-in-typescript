@@ -1,8 +1,13 @@
 import { Fragment, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Disclosure, Transition } from "@headlessui/react";
-import { XMarkIcon, SunIcon } from "@heroicons/react/24/outline";
+import { Disclosure, Popover, Transition } from "@headlessui/react";
+import {
+  XMarkIcon,
+  SunIcon,
+  SquaresPlusIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/24/outline";
 import { MoonIcon } from "@heroicons/react/20/solid";
 import { selectTheme } from "../../store/theme/theme.selector";
 import { setTheme } from "../../store/theme/theme.action";
@@ -12,34 +17,46 @@ type NavData = {
   name: string;
   href: string;
   current: boolean;
+  hasChildren: boolean;
 };
 const navigation: NavData[] = [
-  { name: "Home", href: "/", current: true },
+  { name: "Home", href: "/", current: true, hasChildren: false },
   {
     name: "About",
     href: "/about",
     current: false,
+    hasChildren: false,
   },
   {
     name: "Contact me",
     href: "/contact",
     current: false,
+    hasChildren: false,
   },
   {
     name: "Experience & Education",
     href: "/certificates&education",
     current: false,
+    hasChildren: false,
   },
   {
     name: "Projects",
     href: "/projects",
     current: false,
+    hasChildren: true,
   },
   {
-    name: "Blog (coming soon)",
-    href: "/blog",
+    name: "Github Repos",
+    href: "/github-repos",
     current: false,
+    hasChildren: false,
   },
+  // {
+  //   name: "Blog (coming soon)",
+  //   href: "/blog",
+  //   current: false,
+  //   hasChildren: false,
+  // },
 ];
 const Sidebar = () => {
   const siteData = useSelector(selectInfo);
@@ -52,7 +69,13 @@ const Sidebar = () => {
       }
     },
     switchTheme = (mode: string) => dispatch(setTheme(mode));
-
+  const { services } = siteData,
+    servicesNav = services?.map((service) => ({
+      name: service.name,
+      slug: service.slug,
+      href: "/projects/type/" + service.slug,
+      icon: SquaresPlusIcon,
+    }));
   return (
     <Disclosure.Panel
       className="relative z-100"
@@ -98,7 +121,7 @@ const Sidebar = () => {
                           href={item.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          title="Facebook">
+                          title={item.name}>
                           <div>
                             <SocialSvg
                               name={item.name}
@@ -142,19 +165,73 @@ const Sidebar = () => {
                 </span>
               </div>
               <ul className="flex flex-col py-6 px-2 space-y-1">
-                {navigation.map((item, index) => (
-                  <li
-                    key={index}
-                    className="text-slate-900 dark:text-white"
-                    data-headlessui-state="">
-                    <NavLink
-                      to={item.href}
-                      className="flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                      onClick={closeSidebar}>
-                      <span className="block w-full">{item.name}</span>
-                    </NavLink>
-                  </li>
-                ))}
+                {navigation.map((item, index) =>
+                  item.hasChildren ? (
+                    <Popover
+                      key={index}
+                      as="li"
+                      className="text-slate-900 dark:text-white">
+                      <Popover.Button
+                        as="a"
+                        href="#"
+                        className="flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                        {item.name}
+                        <ChevronDownIcon
+                          className="h-5 w-5 flex-none text-gray-400"
+                          aria-hidden="true"
+                        />
+                      </Popover.Button>
+
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1">
+                        <Popover.Panel
+                          as="ul"
+                          className="nav-mobile-sub-menu pl-6 pb-1 text-base">
+                          {servicesNav?.map((item) => (
+                            <li
+                              key={item.name}
+                              className="animate__animated delay5 animate__bounceIn group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-slate-100 dark:hover:bg-slate-800">
+                              <div
+                                className={`flex h-6 w-6 flex-none items-center justify-center rounded-lg  bg-blue-50 group-hover:bg-white`}>
+                                <item.icon
+                                  className="h-4 w-4 text-gray-600 group-hover:text-indigo-600"
+                                  aria-hidden="true"
+                                />
+                              </div>
+                              <div className="flex-auto">
+                                <NavLink
+                                  to={item.href}
+                                  className="block font-semibold "
+                                  onClick={closeSidebar}>
+                                  {item.name}
+                                  <span className="absolute inset-0" />
+                                </NavLink>
+                              </div>
+                            </li>
+                          ))}
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                  ) : (
+                    <li
+                      key={index}
+                      className="text-slate-900 dark:text-white"
+                      data-headlessui-state="">
+                      <NavLink
+                        to={item.href}
+                        className="flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                        onClick={closeSidebar}>
+                        <span className="block w-full">{item.name}</span>
+                      </NavLink>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>

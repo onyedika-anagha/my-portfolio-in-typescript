@@ -1,12 +1,49 @@
-import { useSelector } from "react-redux";
-import { selectProject } from "../../store/projects/project.selector";
 import Preloader from "../../components/preloader/preloader.component";
 import ProjectItem from "../../components/project/project-item.component";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ProjectData } from "../../store/projects/project.types";
+import { hostURL } from "../../utils/initial-state/states";
+import noData from "../../assets/img/undraw_void_-3-ggu.svg";
+import PagePagination from "../../components/pagination/pagination.component";
 
 const Projects = () => {
-  const projectData = useSelector(selectProject),
-    { projects, meta } = projectData;
-  if (projects == null || meta == null) return <Preloader />;
+  const [projectData, setProject] = useState<ProjectData>();
+  const [loading, setLoading] = useState(true);
+  const { slug } = useParams();
+  const getData = async (
+      uri = `${hostURL}/api/get/projects-by-service/${slug}`
+    ) => {
+      setLoading(true);
+      try {
+        const result = await fetch(uri, {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }),
+          res = await result.json();
+        if (res.data != null) {
+          const data: ProjectData = res;
+          setProject(data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.log(error as Error);
+      }
+    },
+    handlePaginate = (url: string | null, active: boolean) => {
+      if (active) return false;
+      if (url != null) getData(url);
+    };
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slug]);
+  if (projectData == null) return <Preloader />;
+  if (loading) return <Preloader />;
+  const { data, meta } = projectData,
+    projects = data;
   return (
     <div
       className="section pp-scrollable slide slide-portfolio a-slide-typed"
@@ -52,21 +89,48 @@ const Projects = () => {
                     className="count-text plus"
                     data-speed={3000}
                     data-stop={120}>
-                    {meta.total}
+                    30
                   </span>
                   <h6>Projects</h6>
                 </div>
               </div>
             </div>
           </div>
-          <div className="projects mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectItem
-                item={project}
-                key={project.id}
+          {projects != null && projects.length > 0 ? (
+            <>
+              <div className="projects mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {projects.map((project) => (
+                  <ProjectItem
+                    item={project}
+                    key={project.id}
+                  />
+                ))}
+              </div>
+              {meta != null && meta.total > meta.per_page && (
+                <PagePagination
+                  handlePaginate={handlePaginate}
+                  links={meta.links}
+                />
+              )}
+            </>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+              }}>
+              <img
+                src={noData}
+                alt="no data"
+                width={"60%"}
               />
-            ))}
-          </div>
+              <h2 className="slide-title animate__animated delay6 animate__fadeInUp mt-5">
+                No Project found
+              </h2>
+            </div>
+          )}
         </div>
       </div>
     </div>
