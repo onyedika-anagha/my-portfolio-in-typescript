@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { toast } from "react-toastify";
 
 import { selectTheme } from "../../store/theme/theme.selector";
-import { setTheme } from "../../store/theme/theme.action";
+// import { setTheme } from "../../store/theme/theme.action";
 import { fetchData } from "../../store/data/data.actions";
 import { toast } from "react-toastify";
 import { fetchProjectData } from "../../store/projects/project.actions";

@@ -1,9 +1,3 @@
-import {
-  Category,
-  CategoryItem,
-} from "../../store/categories/categories.types";
-import { makeId, slugify } from "./helper";
-
 export const _sizes = {
     mobileS: 320,
     mobileM: 375,

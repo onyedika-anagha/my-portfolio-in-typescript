@@ -18,8 +18,8 @@ export interface Project {
   thumbnail: string;
   images: string[];
   service: Service;
-  site_link: null;
-  github_link: null;
+  site_link: null | string;
+  github_link: null | string;
   stack: string[];
   client: Client;
   status: string;
@@ -42,8 +42,8 @@ export interface Service {
 export interface Links {
   first: string;
   last: string;
-  prev: null;
-  next: null;
+  prev: null | string;
+  next: null | string;
 }
 
 export interface Meta {

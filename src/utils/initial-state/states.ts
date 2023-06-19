@@ -37,8 +37,8 @@ export const shareLink = (copyText: string, title: string) => {
 
 export const hostURL =
   process.env.NODE_ENV !== "production"
-    ? "http://localhost:8000"
-    : "https://suretrending.com";
+    ? "https://app.onyedikaanagha.dev"
+    : "https://app.onyedikaanagha.dev";
 export const AUTH_TOKEN = "x-auth-token";
 export const JWT_TOKEN_STRING = "x-jwt-token-encode-decode-string";
 export const OTP_TOKEN = "_x-otp-token";

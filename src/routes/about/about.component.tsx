@@ -14,7 +14,7 @@ const About = () => {
   const stackMap = siteData.stack.map((item, i) => (
     <span
       key={i}
-      className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+      className="bg-blue-100 mt-1 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
       {item.name}
     </span>
   ));
@@ -68,7 +68,7 @@ const About = () => {
                 <p className="animate__animated delay6 animate__fadeInUp">
                   {user.bio}
                 </p>
-                <div className="animate__animated delay8 animate__fadeInUp">
+                <div className="animate__animated delay8 animate__fadeInUp flex flex-wrap">
                   {stackMap}
                 </div>
               </div>

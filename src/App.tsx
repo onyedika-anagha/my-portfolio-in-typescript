@@ -19,6 +19,7 @@ const Projects = lazy(() => import("./routes/projects/projects.component")),
   Certifications = lazy(
     () => import("./routes/certs/certifications.component")
   );
+
 function App() {
   return (
     <Suspense fallback={<Preloader />}>
@@ -33,24 +34,24 @@ function App() {
             element={<Home />}
           />
           <Route
-            path="/about"
+            path="about"
             element={<About />}
           />
           <Route
-            path="/contact"
+            path="contact"
             element={<Contact />}
           />
           <Route
-            path="/projects"
+            path="projects"
             element={<Projects />}
           />
           <Route
-            path="/project/:slug"
+            path="project/:slug"
             element={<ProjectDetail />}
           />
 
           <Route
-            path="/certificates&education"
+            path="certificates&education"
             element={<Certifications />}
           />
         </Route>

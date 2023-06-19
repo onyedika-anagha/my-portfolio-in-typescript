@@ -17,10 +17,10 @@ const Projects = () => {
             <div className="col-xl-5 lg:grow-0 lg:shrink-0 basisa-41 pxa-15">
               <div className="portfolio-content">
                 <div className="section-title m-b35a">
-                  <span className="sub-title m-b45a animate-element delay5 fadeInUp">
+                  <span className="sub-title m-b45a animate__animated delay5 animate__fadeInUp">
                     Portfolio
                   </span>
-                  <h2 className="slide-title animate-element delay6 fadeInUp">
+                  <h2 className="slide-title animate__animated delay6 animate__fadeInUp">
                     Want to see what I've done?{" "}
                     <span
                       className="text-typed a-typed a-typed-portfolio"
@@ -28,7 +28,7 @@ const Projects = () => {
                     />
                   </h2>
                 </div>
-                <p className="animate-element delay7 fadeInUp">
+                <p className="animate__animated delay7 animate__fadeInUp">
                   My journey both little and big, personal projects and others.{" "}
                   {/* <b>
                     <a href="#">see here.</a>
@@ -37,7 +37,7 @@ const Projects = () => {
               </div>
             </div>
             <div className="col-xl-5 lg:grow-0 lg:shrink-0 basisa-41 pxa-15">
-              <div className="counter-wrap rmb-15 animate-element delay9 fadeInUp">
+              <div className="counter-wrap rmb-15 animate__animated delay9 animate__fadeInUp">
                 <div className="success-box">
                   <span
                     className="count-text lass-than-ten"

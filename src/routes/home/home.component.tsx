@@ -6,7 +6,7 @@ import { selectInfo } from "../../store/data/data.selector";
 import { useSelector } from "react-redux";
 import Preloader from "../../components/preloader/preloader.component";
 import { hostURL } from "../../utils/initial-state/states";
-import servicepng from "../../assets/img/5154267.png";
+import servicepng from "../../assets/img/undraw_multitasking_re_ffpb.svg";
 import shape3 from "../../assets/img/about/shape-one-dark.png";
 import shape4 from "../../assets/img/about/shape-two-dark.png";
 import HomeSkills from "../../components/skills/home.component";

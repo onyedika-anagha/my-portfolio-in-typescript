@@ -8,7 +8,7 @@ import "animate.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { persistor, store } from "./store/store";
 
 const root = ReactDOM.createRoot(
@@ -20,9 +20,9 @@ root.render(
       <PersistGate
         loading={null}
         persistor={persistor}>
-        <BrowserRouter>
+        <Router>
           <App />
-        </BrowserRouter>
+        </Router>
       </PersistGate>
     </Provider>
   </React.StrictMode>

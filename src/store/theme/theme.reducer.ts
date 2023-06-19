@@ -6,7 +6,7 @@ export type ThemeState = {
 };
 
 const THEME_INITIAL_STATE: ThemeState = {
-  mode: "light",
+  mode: "dark",
 };
 
 export const themeReducer = (

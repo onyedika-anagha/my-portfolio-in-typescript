@@ -24,7 +24,7 @@ export interface Experience {
   id: number;
   company: string;
   start_time: Date;
-  end_time: Date;
+  end_time: Date | null;
   position: string;
   type: string;
   note: string | null;

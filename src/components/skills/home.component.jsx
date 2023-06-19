@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectTheme } from "../../store/theme/theme.selector";
-import skillspng from "../../assets/img/skills.png";
+import skillspng from "../../assets/img/undraw_product_iteration_kjok.svg";
 import { selectInfo } from "../../store/data/data.selector";
 import TagCanvas from "tag-canvas";
 import { screenSize } from "../../utils/helper/helper";
 import shape1 from "../../assets/img/slider/5/shape/slider-shape-4.png";
 import shape2 from "../../assets/img/slider/5/shape/slider-shape-1.png";
-import { _sizes, sizes } from "../../utils/helper/states";
+import { _sizes } from "../../utils/helper/states";
 
 // const TagCanvas = require("tag-canvas");
 const HomeSkills = () => {
@@ -56,7 +56,7 @@ const HomeSkills = () => {
     </li>
   ));
   const stackMap = siteInfo.stack.map((item, i) => <span key={i}
-    className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+    className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 mt-1 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
     {item.name}
   </span>
   )
@@ -81,7 +81,7 @@ const HomeSkills = () => {
                     />
                   </h2>
                 </div>
-                <p className="animate__animated delay6 animate__fadeInUp">
+                <p className="animate__animated delay6 animate__fadeInUp flex flex-wrap">
                   {stackMap}
                 </p>
                 <div className="bar-list a-progressbar pt-5 animate__animated delay9 animate__fadeInUp">

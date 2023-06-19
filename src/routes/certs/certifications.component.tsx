@@ -13,9 +13,9 @@ const Certifications = () => {
           <div className="flex flex-wrap items-center -mxa-15">
             <div className="lg:grow-0 lg:shrink-0 lg:basis-1/2 pxa-15">
               <div className="educations rmb-55">
-                <div className="section-title mb-45 animate-element delay2 fadeInUp">
+                <div className="section-title mb-45 animate__animated delay2 animate__fadeInUp">
                   <span className="sub-title mb-45">qualification</span>
-                  <h2 className="slide-title animate-element delay5 fadeInUp">
+                  <h2 className="slide-title animate__animated delay5 animate__fadeInUp">
                     my education
                   </h2>
                 </div>
@@ -31,10 +31,10 @@ const Certifications = () => {
             </div>
             <div className="lg:grow-0 lg:shrink-0 lg:basis-1/2 pxa-15">
               <div className="experiecnes">
-                <div className="section-title mb-45 animate-element delay4 fadeInUp">
-                  <span className="sub-title mb-45">Experiecne</span>
-                  <h2 className="slide-title animate-element delay5 fadeInUp">
-                    My Experiecne
+                <div className="section-title mb-45 animate__animated delay4 animate__fadeInUp">
+                  <span className="sub-title mb-45">Experience</span>
+                  <h2 className="slide-title animate__animated delay5 animate__fadeInUp">
+                    My Experiences
                   </h2>
                 </div>
                 <div className="edu-experi-wrap">

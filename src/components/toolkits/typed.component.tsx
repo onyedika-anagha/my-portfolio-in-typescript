@@ -19,7 +19,6 @@ const Typed = () => {
 
     const currentText = fullText[indexOfTexts].toString();
     if (index < currentText.length && !nextText) {
-      // console.log("first");
       setTimeout(
         () => {
           setText(text + currentText[index]);
@@ -28,7 +27,6 @@ const Typed = () => {
         index === currentText.length - 1 ? 2000 : 40
       );
     } else {
-      // console.log("second");
       if (index !== 0) {
         setTimeout(() => {
           const newText = text.slice(0, index);
@@ -37,7 +35,6 @@ const Typed = () => {
         }, 40);
         setNextText(true);
       } else {
-        // console.log("switch");
         setText("");
         setNextText(false);
         if (indexOfTexts === arrLength - 1) {
@@ -47,6 +44,7 @@ const Typed = () => {
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, nextText]);
   return text;
 };

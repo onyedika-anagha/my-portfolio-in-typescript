@@ -81,8 +81,6 @@ code {
 }
 
 /*-----------------------------------------------------------------------------------
-    Note: This is Main Style CSS File.
------------------------------------------------------------------------------------
 	CSS INDEX
 	===================
     01. Default CSS
@@ -1129,6 +1127,12 @@ b a:not(:hover) {
   display: flex;
   margin-top: 40px;
   align-items: center;
+}
+
+@media only screen and (max-width: 480px) {
+  .service-item h4 {
+    font-size: 14px !important;
+  }
 }
 
 .service-item .icon {

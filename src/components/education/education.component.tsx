@@ -17,7 +17,7 @@ const EducationItem = ({ institution }: { institution: Education }) => {
     startYear === endYear ? `${getMonth(endTime)} ${endYear}` : endYear;
 
   return (
-    <div className="edu-experi-item animate-element delay5 fadeInUp">
+    <div className="edu-experi-item animate__animated delay5 animate__fadeInUp">
       <span className="years">
         {started}-{ended}
       </span>

@@ -2,17 +2,16 @@ import { takeLatest, all, call, put } from "typed-redux-saga/macro";
 
 import { SetData, setData } from "./data.actions";
 import { setDataInfo } from "./data.slice";
-import { DATA_ACTION_TYPES, DataTypes } from "./data.types";
+import { DATA_ACTION_TYPES } from "./data.types";
 import { hostURL } from "../../utils/initial-state/states";
 
 const getData = async () => {
   try {
     const res = await fetch(`${hostURL}/api/get/all`);
     const data = await res.json();
-    if(data.success != null){
-      if(data.success) return await data.data;
+    if (data.success != null) {
+      if (data.success) return await data.data;
     }
-    
   } catch (error) {
     console.error(error as Error);
   }

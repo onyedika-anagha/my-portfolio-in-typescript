@@ -2,16 +2,7 @@ import { Fragment, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Disclosure, Transition } from "@headlessui/react";
-import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-  SunIcon,
-} from "@heroicons/react/24/outline";
+import { XMarkIcon, SunIcon } from "@heroicons/react/24/outline";
 import { MoonIcon } from "@heroicons/react/20/solid";
 import { selectTheme } from "../../store/theme/theme.selector";
 import { setTheme } from "../../store/theme/theme.action";

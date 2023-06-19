@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { hostURL } from "../../utils/initial-state/states";
 import { Spinner, Button } from "flowbite-react";
 import { alertMessage } from "../../utils/initial-state/initial-state";
+import { _sizes } from "../../utils/helper/states";
 
 const defaultValues = {
   name: "",
@@ -56,6 +57,7 @@ const ContactForm = () => {
 
     setFormData((state) => ({ ...state, [name]: value }));
   };
+  const { innerWidth } = window;
   return (
     <form
       onSubmit={handleSubmit}
@@ -72,6 +74,13 @@ const ContactForm = () => {
           />
           <label
             htmlFor=""
+            style={
+              innerWidth < _sizes.mobileL
+                ? {
+                    fontSize: "0.75rem",
+                  }
+                : {}
+            }
             className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
             What's your name?
           </label>
@@ -106,6 +115,13 @@ const ContactForm = () => {
           />
           <label
             htmlFor=""
+            style={
+              innerWidth < _sizes.mobileL
+                ? {
+                    fontSize: "0.75rem",
+                  }
+                : {}
+            }
             className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
             Email Address
           </label>
@@ -142,6 +158,13 @@ const ContactForm = () => {
           />
           <label
             htmlFor=""
+            style={
+              innerWidth < _sizes.mobileL
+                ? {
+                    fontSize: "0.75rem",
+                  }
+                : {}
+            }
             className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
             Mobile Number
           </label>
@@ -170,6 +193,13 @@ const ContactForm = () => {
           className="w-full rounded-2xl border-1 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"></textarea>
         <label
           htmlFor=""
+          style={
+            innerWidth < _sizes.mobileL
+              ? {
+                  fontSize: "0.75rem",
+                }
+              : {}
+          }
           className="absolute -top-3 bg-slate-50 px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-neutral-800 dark:text-slate-50">
           Tell me about your project
         </label>
