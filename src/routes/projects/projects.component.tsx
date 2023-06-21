@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import { ProjectData } from "../../store/projects/project.types";
 import { hostURL } from "../../utils/initial-state/states";
 import noData from "../../assets/img/undraw_void_-3-ggu.svg";
-import PagePagination from "../../components/pagination/pagination.component";
+import PagePagination, {
+  goToTop,
+} from "../../components/pagination/pagination.component";
 
 const Projects = () => {
   const [projectData, setProject] = useState<ProjectData>();
@@ -34,7 +36,10 @@ const Projects = () => {
     },
     handlePaginate = (url: string | null, active: boolean) => {
       if (active) return false;
-      if (url != null) getData(url);
+      if (url != null) {
+        goToTop();
+        getData(url);
+      }
     };
   useEffect(() => {
     getData();

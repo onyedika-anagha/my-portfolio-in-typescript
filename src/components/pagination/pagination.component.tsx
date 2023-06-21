@@ -13,6 +13,12 @@ type PaginationProps2 = {
   prevPage: () => void;
   currentPage: number;
 };
+export const goToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 export const Pagination = ({
   itemsPerPage,
   totalItems,
@@ -37,6 +43,7 @@ export const Pagination = ({
     if (currentPage === 1) {
       return;
     }
+    goToTop();
     prevPage();
   };
   const next = () => {
@@ -44,6 +51,7 @@ export const Pagination = ({
     if (pageNumbers.length === currentPage) {
       return;
     }
+    goToTop();
     nextPage();
   };
   return (
@@ -59,7 +67,10 @@ export const Pagination = ({
         {pageNumbers.map((num) => (
           <a
             key={num}
-            onClick={() => paginate(num)}
+            onClick={() => {
+              num !== currentPage && goToTop();
+              paginate(num);
+            }}
             href="#!"
             className={active(num)}>
             {num}

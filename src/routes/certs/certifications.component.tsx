@@ -7,10 +7,10 @@ const Certifications = () => {
   const siteData = useSelector(selectInfo),
     { education, experience } = siteData;
   return (
-    <div className="section pp-scrollable slide slide-resume slide-light">
+    <div className="section pp-scrollable slide slide-resume slide-light pt-2">
       <div className="slide-container">
         <div className="container">
-          <div className="flex flex-wrap items-center -mxa-15">
+          <div className="flex flex-wrap -mxa-15">
             <div className="lg:grow-0 lg:shrink-0 lg:basis-1/2 pxa-15">
               <div className="educations rmb-55">
                 <div className="section-title mb-45 animate__animated delay2 animate__fadeInUp">

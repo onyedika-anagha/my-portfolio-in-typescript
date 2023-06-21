@@ -139,7 +139,9 @@ const ProjectDetail = () => {
                             <dt className="md:col-span-4 col-span-5 mt-2">
                               Link :
                             </dt>
-                            <dd className="md:col-span-8 col-span-7 mt-2 text-slate-400">
+                            <dd
+                              className="md:col-span-8 col-span-7 mt-2 text-slate-400"
+                              style={{ overflowWrap: "break-word" }}>
                               <a
                                 href={project.site_link}
                                 target="_blank"
@@ -153,9 +155,11 @@ const ProjectDetail = () => {
                         {project.github_link != null && (
                           <>
                             <dt className="md:col-span-4 col-span-5 mt-2">
-                              Website :
+                              Github Repo :
                             </dt>
-                            <dd className="md:col-span-8 col-span-7 mt-2 text-slate-400">
+                            <dd
+                              className="md:col-span-8 col-span-7 mt-2 text-slate-400"
+                              style={{ overflowWrap: "break-word" }}>
                               <a
                                 href={project.github_link}
                                 target="_blank"
@@ -176,9 +180,10 @@ const ProjectDetail = () => {
 
                     <ul className="list-none text-center mt-6">
                       {project.stack.map((stack, i) => (
-                        <li className="inline-block m-2">
+                        <li
+                          className="inline-block m-2"
+                          key={i}>
                           <a
-                            key={i}
                             href="#!"
                             className="px-3 py-1 text-slate-400 hover:text-white dark:hover:text-white bg-gray-50 dark:bg-slate-800 text-sm hover:bg-indigo-600 dark:hover:bg-indigo-600 rounded-md shadow dark:shadow-gray-800 transition-all duration-500 ease-in-out">
                             {stack}

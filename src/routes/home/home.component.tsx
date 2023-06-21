@@ -68,7 +68,7 @@ const Home = () => {
                   <div className="service-content pt-100 rpt-55 animate__animated delay5 animate__fadeInUp">
                     <div className="section-title mb-25">
                       <h2 className="slide-title animate__animated delay5 animate__fadeInUp">
-                        What{" "}
+                        What I
                         <span
                           className="text-typed a-typed a-typed-services"
                           data-text="Services"
@@ -90,6 +90,9 @@ const Home = () => {
                             <img
                               src={`${hostURL}/uploaded/file/${service.image}`}
                               alt="Icon"
+                              style={{
+                                width: "55%",
+                              }}
                             />
                           </div>
                           <h4>{service.name}</h4>
