@@ -1,16 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import"https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap";
+:root {
+    --light-color: rgb(243, 240, 240);
+    --dark-color: #191919;
+    --text-secondary: #8e8e8e;
+    --text-primary: #f1f2f3
+}
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif; */
+    font-family: monospace,monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.typed{
+    font-family: monospace,monospace;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -122,8 +132,8 @@ code {
   --heading-color: #1d2043;
   --primary-color: rgb(28 100 242 / var(--tw-bg-opacity));
   --light-color: #fafafa;
-  --base-font: "Poppins", sans-serif;
-  --heading-font: "Playfair Display", serif;
+  --base-font: monospace,monospace;
+  --heading-font: monospace,monospace;
 }
 
 body {

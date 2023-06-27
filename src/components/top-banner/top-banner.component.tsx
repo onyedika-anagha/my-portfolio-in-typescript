@@ -71,7 +71,7 @@ const TopBanner = memo(() => {
                 <h3 className="animate__animated delay7 animate__fadeInUp">
                   Software Developer
                 </h3>
-                <p className="animate__animated delay8 animate__fadeInUp">
+                <p className="animate__animated delay8 animate__fadeInUp typed">
                   {Typed()}
                 </p>
                 <Link

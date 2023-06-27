@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+// import sound from '../../assets/audio/key-stroke.mp3'
 
 const Typed = () => {
   const [text, setText] = useState("");
   const [nextText, setNextText] = useState(false);
-
+// const audio = new Audio(sound)
   const fullText = [
     `Hi! My name is Onyedika Johnpaul Anagha...`,
     `Do you wish to take your business online?.`,
