@@ -5,6 +5,7 @@ import { hostURL } from "../../utils/initial-state/states";
 import shape1 from "../../assets/img/slider/5/shape/slider-shape-4.png";
 import shape2 from "../../assets/img/slider/5/shape/slider-shape-1.png";
 import bgShape from "../../assets/img/bg-shape.png";
+import { getRandomAnimate } from "../../components/project/project-item.component";
 
 const About = () => {
   const siteData = useSelector(selectInfo);
@@ -14,17 +15,18 @@ const About = () => {
   const stackMap = siteData.stack.map((item, i) => (
     <span
       key={i}
-      className="bg-blue-100 mt-1 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+      className={`bg-blue-100 mt-1 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400  ${getRandomAnimate()}`}>
       {item.name}
     </span>
   ));
+  
   return (
     <div
       className="section pp-scrollable slide slide-services slide-light slide-services a-slide-typed  dark:bg-neutral-800"
       data-name="services">
       <div className="slide-container">
         <div className="container">
-          <div className="flex flex-wrap items-center -mxa-15">
+          <div className="flex flex-wrap -mxa-15">
             <div className="lg:grow-0 lg:shrink-0 basisa-58 pxa-15">
               <div className="service-image animate__animated delay4 animate__fadeInUp">
                 <span className="sub-title mb-75">About</span>
@@ -65,7 +67,7 @@ const About = () => {
                     About me.
                   </h2>
                 </div>
-                <p className="animate__animated delay6 animate__fadeInUp">
+                <p className="animate__animated delay6 animate__fadeInUp" style={{ whiteSpace: 'pre-line' }}>
                   {user.bio}
                 </p>
                 <div className="animate__animated delay8 animate__fadeInUp flex flex-wrap">

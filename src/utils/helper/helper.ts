@@ -24,6 +24,10 @@ export const greeting = (firstName: string) => {
   }
 };
 
+export const getTime = (params: string | Date) => {
+  const anyDate = new Date(`${params}`);
+  return anyDate.toDateString();
+};
 export const getInitialView = () => {
   const params = new URLSearchParams(window.location.search);
   const initialView = params.get("view"),

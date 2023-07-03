@@ -1,0 +1,88 @@
+.div-block-440 {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: -1;
+  display: block;
+  overflow: visible;
+  height: auto;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto auto;
+  grid-template-rows: auto auto;
+  background-image: url("https://cdn.dribbble.com/users/2182116/screenshots/13933572/media/cc32730b1eb3a657a48a6ceacefc72fb.gif");
+  background-position: 50% 50%;
+  background-color: #fff;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  -o-object-fit: fill;
+  object-fit: fill;
+}
+
+@media screen and (max-width: 991px) {
+  .button-8 {
+    line-height: 20px;
+  }
+  .div-block-440 {
+    display: block;
+  }
+}
+.w-button {
+  display: inline-block;
+  padding: 9px 15px;
+  background-color: #3898ec;
+  color: white;
+  border: 0;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+}
+.heading_h2 {
+  color: #000 !important;
+}
+.button-8 {
+  padding: 10px 16px;
+  border-radius: 20px;
+  background-color: #000;
+  font-family: Graphik, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+.paragraph-3._404_paragraph {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  padding-top: 0px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 767px) {
+  .paragraph-3 {
+    line-height: 25px;
+  }
+}
+.paragraph-3 {
+  max-width: none;
+  padding-top: 12px;
+  font-family: Graphik, sans-serif;
+  color: #666 !important;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: left;
+}

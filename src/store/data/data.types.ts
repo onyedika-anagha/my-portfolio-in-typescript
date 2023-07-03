@@ -1,3 +1,5 @@
+import { Links, Meta } from "../projects/project.types";
+
 export enum DATA_ACTION_TYPES {
   FETCH_DATA = "data/FETCH_DATA",
   SET_DATA = "data/SET_DATA",
@@ -54,4 +56,24 @@ export interface User {
   tel: string;
   profile_image: string;
   bio: string;
+}
+
+export interface Blog {
+  id: number;
+  title: string;
+  category: string;
+  slug: string;
+  img: string;
+  body: string;
+  status: string;
+  tags: string;
+  created_at: Date;
+  updated_at: Date;
+  comment_count: number;
+}
+
+export interface BlogData {
+  data: Blog[] | null;
+  links: Links | null;
+  meta: Meta | null;
 }

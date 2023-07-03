@@ -51,12 +51,12 @@ const navigation: NavData[] = [
     current: false,
     hasChildren: false,
   },
-  // {
-  //   name: "Blog (coming soon)",
-  //   href: "/blog",
-  //   current: false,
-  //   hasChildren: false,
-  // },
+  {
+    name: "Blog",
+    href: "/blog",
+    current: false,
+    hasChildren: false,
+  },
 ];
 const Sidebar = () => {
   const siteData = useSelector(selectInfo);
