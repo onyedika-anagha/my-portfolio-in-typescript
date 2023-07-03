@@ -101,7 +101,7 @@ function BlogItem({ item }: { item: Blog }) {
               />
 
               <span className="ml-1 text-neutral-900 dark:text-neutral-200">
-                {item.comment_count}
+                {item.comments_count}
               </span>
             </a>
           </div>

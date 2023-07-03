@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // import { selectProject } from "../../store/projects/project.selector";
 // import { Project } from "../../store/projects/project.types";
 import { hostURL } from "../../utils/initial-state/states";
@@ -10,14 +10,20 @@ import { selectInfo } from "../../store/data/data.selector";
 import { useSelector } from "react-redux";
 import SocialSvg from "../../utils/helper/socials";
 import CommentForm from "../../components/blog/comment-form.component";
+import { getTime } from "../../utils/helper/helper";
+import ReplyForm from "../../components/blog/reply-form.component";
 
 type BlogType = null | Blog;
 const defaultBlog: BlogType = null;
 const BlogDetail = () => {
   const [blog, setBlog] = useState<BlogType>(defaultBlog);
+  const [comment_id, setComment] = useState(0);
+  const [reply_id, setReply] = useState(0);
   const { slug } = useParams();
   const siteData = useSelector(selectInfo);
   const getBlog = async () => {
+    setComment(0);
+    setReply(0);
     try {
       const result = await fetch(`${hostURL}/api/get/blog/${slug}`, {
           headers: {
@@ -42,7 +48,6 @@ const BlogDetail = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
-  console.log(blog);
 
   if (blog == null) return <Preloader />;
   if (siteData.user == null) return <Preloader />;
@@ -73,78 +78,86 @@ const BlogDetail = () => {
               </div>
               <div className="comments pb-15 mt-8">
                 <h3 className="comment-title mb-55">Comments:</h3>
-                <div className="comment-item wow fadeInUp delay-0-2s">
-                  <div className="author-image">
-                    <img
-                      src="assets/images/blog/comment-author-3.jpg"
-                      alt="Author"
-                    />
-                  </div>
-                  <div className="comment-details">
-                    <div className="name-date">
-                      <h5>John F. Medina</h5>
-                      <span className="date">25 Feb 2022</span>
+                {blog.comments.map((comment) => (
+                  <div key={comment.id}>
+                    <div className="comment-item animate__animated animate__fadeInUp delay-0-2s">
+                      <div className="author-image flex h-16 w-16 rounded-full shadow items-center justify-center bg-gray-50 dark:bg-slate-800">
+                        <span className="wil-avatar__name">
+                          {comment.user_name.charAt(0)}
+                        </span>
+                      </div>
+                      <div className="comment-details">
+                        <div className="name-date">
+                          <h5>{comment.user_name}</h5>
+                          <span className="date">
+                            {getTime(comment.created_at)}
+                          </span>
+                        </div>
+                        <p>{comment.comment}</p>
+                        <a
+                          href="#!"
+                          onClick={() => {
+                            setComment((state) =>
+                              state !== 0 ? 0 : comment.id
+                            );
+                            setReply(0);
+                          }}
+                          className="reply">
+                          Reply <i className="fas fa-long-arrow-alt-right" />
+                        </a>
+                      </div>
                     </div>
-                    <p>
-                      Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem accusantium doloremque laudantium, totam rem
-                      aperiam, eaque ipsa quae abillo inventore veritatis
-                    </p>
-                    <a
-                      href="blog-details.html"
-                      className="reply">
-                      Reply <i className="fas fa-long-arrow-alt-right" />
-                    </a>
+                    {comment_id === comment.id && reply_id === 0 && (
+                      <ReplyForm
+                        comment_id={comment.id}
+                        getBlog={getBlog}
+                        comment_user_name={comment.user_name}
+                      />
+                    )}
+                    {comment.replies.map((reply, i) => (
+                      <div key={i}>
+                        <div className="comment-item child-comment animate__animated animate__fadeInUp delay-0-4s">
+                          <div className="author-image flex h-16 w-16 rounded-full shadow items-center justify-center bg-gray-50 dark:bg-slate-800">
+                            <span className="wil-avatar__name">
+                              {reply.user_name.charAt(0)}
+                            </span>
+                          </div>
+                          <div className="comment-details">
+                            <div className="name-date">
+                              <h5>{reply.user_name}</h5>
+                              <span className="date">
+                                {getTime(reply.created_at)}
+                              </span>
+                            </div>
+                            <p>{reply.reply}</p>
+                            <a
+                              href="#!"
+                              onClick={() => {
+                                setComment((state) =>
+                                  state !== 0 ? 0 : comment.id
+                                );
+                                setReply((state) =>
+                                  state !== 0 ? 0 : reply.id
+                                );
+                              }}
+                              className="reply">
+                              Reply{" "}
+                              <i className="fas fa-long-arrow-alt-right" />
+                            </a>
+                          </div>
+                        </div>
+                        {reply_id === reply.id && (
+                          <ReplyForm
+                            comment_id={comment.id}
+                            getBlog={getBlog}
+                            comment_user_name={comment.user_name}
+                          />
+                        )}
+                      </div>
+                      // {reply_id}
+                    ))}
                   </div>
-                </div>
-                <div className="comment-item child-comment wow fadeInUp delay-0-4s">
-                  <div className="author-image">
-                    <img
-                      src="assets/images/blog/comment-author-2.jpg"
-                      alt="Author"
-                    />
-                  </div>
-                  <div className="comment-details">
-                    <div className="name-date">
-                      <h5>Grace L. Freeman</h5>
-                      <span className="date">25 Feb 2022</span>
-                    </div>
-                    <p>
-                      Perspiciatis unde omnis iste natus error sit voluptatem
-                      accusantium doloremq totam rem aperiam, eaque ipsa quae
-                      abillo inventore veritatis
-                    </p>
-                    <a
-                      href="blog-details.html"
-                      className="reply">
-                      Reply <i className="fas fa-long-arrow-alt-right" />
-                    </a>
-                  </div>
-                </div>
-                <div className="comment-item wow fadeInUp delay-0-6s">
-                  <div className="author-image">
-                    <img
-                      src="assets/images/blog/comment-author-1.jpg"
-                      alt="Author"
-                    />
-                  </div>
-                  <div className="comment-details">
-                    <div className="name-date">
-                      <h5>Alexzeder Alex</h5>
-                      <span className="date">25 Feb 2022</span>
-                    </div>
-                    <p>
-                      Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem accusantium doloremque laudantium, totam rem
-                      aperiam, eaque ipsa quae abillo inventore veritatis
-                    </p>
-                    <a
-                      href="blog-details.html"
-                      className="reply">
-                      Reply <i className="fas fa-long-arrow-alt-right" />
-                    </a>
-                  </div>
-                </div>
+                ))}
               </div>
 
               <div className="p-6 rounded-md shadow dark:shadow-gray-800 mt-8">
@@ -212,7 +225,7 @@ const BlogDetail = () => {
                 </div>
                 {/*end icon*/}
                 <h5 className="text-lg font-semibold bg-gray-50 dark:bg-slate-800 shadow dark:shadow-gray-800 rounded-md p-2 text-center mt-8">
-                  Tagscloud
+                  Tags
                 </h5>
                 <ul className="list-none text-center mt-8">
                   {blog.tags.split(",").map((item: string, i: number) => (
@@ -232,41 +245,6 @@ const BlogDetail = () => {
           </div>
           {/*end grid*/}
         </div>
-        {/*end container*/}
-        <div className="container md:mt-24 mt-16">
-          <div className="md:flex justify-center">
-            <div className="lg:w-2/3 text-center">
-              <h3 className="md:text-3xl text-2xl md:leading-normal leading-normal font-semibold mb-6">
-                Subscribe our weekly subscription
-              </h3>
-              <p className="text-slate-400 max-w-xl mx-auto">
-                Add some text to explain benefits of subscripton on your
-                services. We'll send you the best of our blog just once a
-                weekly.
-              </p>
-              <div className="mt-8">
-                <div className="text-center subcribe-form">
-                  <form className="relative mx-auto max-w-xl">
-                    <input
-                      type="email"
-                      id="subemail"
-                      name="name"
-                      className="pt-4 pe-40 pb-4 ps-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white/70 dark:bg-slate-900/70 border border-gray-100 dark:border-gray-700"
-                      placeholder="Enter your email id.."
-                    />
-                    <button
-                      type="submit"
-                      className="btn absolute top-[2px] end-[3px] h-[46px] bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-full">
-                      Subcribe Now
-                    </button>
-                  </form>
-                  {/*end form*/}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/*end container*/}
       </section>
     </>
   );

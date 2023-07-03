@@ -57,7 +57,6 @@ export interface User {
   profile_image: string;
   bio: string;
 }
-
 export interface Blog {
   id: number;
   title: string;
@@ -69,7 +68,29 @@ export interface Blog {
   tags: string;
   created_at: Date;
   updated_at: Date;
-  comment_count: number;
+  comments_count: number;
+  comments: Comment[];
+}
+
+export interface Comment {
+  id: number;
+  blog_id: number;
+  user_name: string;
+  email: string;
+  comment: string;
+  created_at: Date;
+  updated_at: Date;
+  replies: Reply[];
+}
+
+export interface Reply {
+  id: number;
+  comment_id: number;
+  user_name: string;
+  email: string;
+  reply: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface BlogData {

@@ -7,24 +7,26 @@ import { alertMessage } from "../../utils/initial-state/initial-state";
 type ValuesType = {
   user_name: string;
   email: string;
-  comment: string;
+  reply: string;
 };
 const defaultValues: ValuesType = {
   user_name: "",
   email: "",
-  comment: "",
+  reply: "",
 };
 
-const CommentForm = ({
-  blog_id,
+const ReplyForm = ({
+  comment_id,
+  comment_user_name,
   getBlog,
 }: {
-  blog_id: string | number;
+  comment_id: string | number;
+  comment_user_name: string | number;
   getBlog: () => void;
 }) => {
   const [formData, setFormData] = useState<ValuesType>(defaultValues);
   const [loading, setLoading] = useState(false);
-  const { user_name, email, comment } = formData;
+  const { user_name, email, reply } = formData;
 
   const resetForm = () => {
     setFormData(defaultValues);
@@ -33,13 +35,17 @@ const CommentForm = ({
     setLoading(true);
     try {
       event.preventDefault();
-      const result = await fetch(`${hostURL}/api/post/comment`, {
+      const result = await fetch(`${hostURL}/api/post/reply`, {
           method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ...formData, blog_id }),
+          body: JSON.stringify({
+            ...formData,
+            comment_id,
+            reply: `@${comment_user_name} ${reply}`,
+          }),
         }),
         res = await result.json();
       if (res.type === "success") {
@@ -67,10 +73,11 @@ const CommentForm = ({
   return (
     <form
       id="comment-form"
-      className="comment-form"
+      className="comment-form animate__animated animate__fadeInDown my-8"
       action="#"
       method="post"
       onSubmit={handleSubmit}>
+      <h3 className="comment-title">Leave a Reply</h3>
       <div className="row clearfix">
         <div className="col-sm-6">
           <div className="form-group">
@@ -103,14 +110,14 @@ const CommentForm = ({
         <div className="col-md-12">
           <div className="form-group">
             <textarea
-              name="comment"
+              name="reply"
               id="message"
               rows={5}
               className="form-control"
               placeholder="Write Message"
               onChange={handleChange}
               required
-              value={comment}
+              value={reply}
             />
           </div>
         </div>
@@ -147,4 +154,4 @@ const CommentForm = ({
   );
 };
 
-export default CommentForm;
+export default ReplyForm;
