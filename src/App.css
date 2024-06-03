@@ -1022,3 +1022,9 @@
   height: 2rem;
   width: 2rem;
 }
+.project_desc img{
+  width: 8rem;
+}
+.project_desc p{
+  white-space: pre-line;
+}

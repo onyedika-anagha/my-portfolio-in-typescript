@@ -56,6 +56,7 @@ export interface User {
   tel: string;
   profile_image: string;
   bio: string;
+  professional_email?: string;
 }
 export interface Blog {
   id: number;

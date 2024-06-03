@@ -60,13 +60,6 @@ function BlogItem({ item }: { item: Blog }) {
                 className="absolute inset-0 w-full h-full object-cover"
                 sizes="100px"
                 alt={"Onyedika Anagha"}
-                style={{
-                  position: "absolute",
-                  height: "100%",
-                  width: "100%",
-                  inset: 0,
-                  color: "transparent",
-                }}
               />
               <span className="wil-avatar__name">O</span>
             </div>

@@ -55,4 +55,5 @@ export const makeId = (length = 12) => {
   screenSize = {
     width: window.innerWidth,
     height: window.innerHeight,
-  };
+  },smallScreenThreshold = 768,
+  isSmallScreen = screenSize.width < smallScreenThreshold;

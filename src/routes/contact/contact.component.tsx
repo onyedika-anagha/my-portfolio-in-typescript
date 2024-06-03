@@ -8,7 +8,9 @@ import SocialSvg from "../../utils/helper/socials";
 const Contact = () => {
   const siteData = useSelector(selectInfo);
   if (siteData.user == null) return <Preloader />;
-  const { user, socials } = siteData;
+  const { user, socials } = siteData,
+    email =
+      user.professional_email != null ? user.professional_email : user.email;
 
   return (
     <div className="section pp-scrollable slide slide-contact slide-light bg-slate-50 dark:bg-neutral-800">
@@ -82,7 +84,7 @@ const Contact = () => {
               <h2>Contact Info.</h2>
             </div>
             <h3 className="animate__animated delay6 animate__fadeInUp">
-              <a href={`mailto:${user.email}`}>{user.email}</a>
+              <a href={`mailto:${email}`}>{email}</a>
             </h3>
             <a
               href={`tel:${user.tel}`}

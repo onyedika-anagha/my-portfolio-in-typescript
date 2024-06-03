@@ -112,7 +112,14 @@ const ProjectDetail = () => {
                       <h4 className="text-xl font-semibold mb-3 border-b border-gray-100 dark:border-gray-700 pb-3">
                         Project Name : {project.title}
                       </h4>
-                      <p className="text-slate-400">{project.description}</p>
+                      <div className="project_desc text-slate-400" dangerouslySetInnerHTML={{ __html:  project.description}}>
+
+                      </div>
+                      {/* <p
+                        className="text-slate-400"
+                        style={{ whiteSpace: "pre-line" }}>
+                        {project.description}
+                      </p> */}
                     </div>
                   </div>
                   {/*end col*/}

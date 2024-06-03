@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Project } from "../../store/projects/project.types";
 import { hostURL } from "../../utils/initial-state/states";
+import Image from "../image/image.component";
 export const getRandomAnimate = () => {
   const animations = [
     "animate__fadeInUp",
@@ -21,10 +22,11 @@ const ProjectItem = ({ item }: { item: Project }) => {
           to={`/project/${item.slug}`}
           className="absolute top-0 h-full w-full ltr:left-0 rtl:right-0"
         />
-        <img
+        <Image
           src={`${hostURL}/uploaded/file/${item.thumbnail}`}
-          alt="project-1"
+          alt={item.title}
           className="h-52 w-full rounded-t-3xl object-cover"
+          wrapperClassName="h-52 w-full rounded-t-3xl object-cover"
         />
         <div className="p-5 text-sm font-bold">
           <h6 className="mb-1 text-black dark:text-white">{item.title}</h6>

@@ -81,7 +81,7 @@ const BlogDetail = () => {
                 {blog.comments.map((comment) => (
                   <div key={comment.id}>
                     <div className="comment-item animate__animated animate__fadeInUp delay-0-2s">
-                      <div className="author-image flex h-16 w-16 rounded-full shadow items-center justify-center bg-gray-50 dark:bg-slate-800">
+                      <div className="author-image flex h-16 w-16 rounded-full shadow items-center justify-center bg-gray-50 dark:bg-gray-100">
                         <span className="wil-avatar__name">
                           {comment.user_name.charAt(0)}
                         </span>
@@ -117,7 +117,7 @@ const BlogDetail = () => {
                     {comment.replies.map((reply, i) => (
                       <div key={i}>
                         <div className="comment-item child-comment animate__animated animate__fadeInUp delay-0-4s">
-                          <div className="author-image flex h-16 w-16 rounded-full shadow items-center justify-center bg-gray-50 dark:bg-slate-800">
+                          <div className="author-image flex h-16 w-16 rounded-full shadow items-center justify-center bg-gray-50 dark:bg-gray-100">
                             <span className="wil-avatar__name">
                               {reply.user_name.charAt(0)}
                             </span>
@@ -168,7 +168,7 @@ const BlogDetail = () => {
                 />
               </div>
             </div>
-            <div className="lg:col-span-4 md:col-span-6">
+            <div className="lg:col-span-4 md:col-span-6 mb-10">
               <div className="sticky top-20">
                 <h5 className="text-lg font-semibold bg-gray-50 dark:bg-slate-800 shadow dark:shadow-gray-800 rounded-md p-2 text-center">
                   Author
@@ -179,14 +179,6 @@ const BlogDetail = () => {
                     className="h-24 w-24 mx-auto rounded-full shadow mb-4"
                     sizes="100px"
                     alt={"Onyedika Anagha"}
-                    style={{
-                      borderRadius: "50%",
-                      position: "absolute",
-                      height: "100%",
-                      width: "100%",
-                      inset: 0,
-                      color: "transparent",
-                    }}
                     wrapperClassName="h-24 w-24 mx-auto rounded-full shadow mb-4"
                   />
                   <a

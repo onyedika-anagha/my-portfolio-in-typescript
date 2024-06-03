@@ -69,21 +69,18 @@ const InitialState = () => {
   useEffect(() => {
     dispatch(fetchData());
     dispatch(fetchProjectData());
-    // if (
-    //   !("theme" in localStorage) &&
-    //   window.matchMedia("(prefers-color-scheme: dark)").matches
-    // ) {
-    //   const _theme = localStorage.getItem("theme"),
-    //     newTheme = _theme == null ? "dark" : _theme;
-    //   console.log("newTheme: ", newTheme);
-
-    //   dispatch(setTheme(newTheme));
-    // } else {
-    //   const _theme = localStorage.getItem("theme"),
-    //     newTheme = _theme == null ? "light" : _theme;
-    //   console.log("newTheme: ", _theme);
-    //   dispatch(setTheme(newTheme));
-    // }
+    const html = document.querySelector("html");
+    if (
+      !("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      const _theme = localStorage.getItem("theme"),
+        newTheme = _theme == null ? "dark" : _theme;
+        localStorage.setItem("_theme", newTheme);
+        if(newTheme==="dark"){
+          html?.classList.add("dark");
+        }
+    }
   }, [dispatch]);
 
   return <></>;
